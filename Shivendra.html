@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f, #e74c3c);
+            background-size: 400% 400%;
+            animation: gradientAnimation 20s ease infinite;
+            overflow: hidden;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            transition: opacity 1s, transform 1s;
+        }
+
+        .container.hidden {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .social-links button {
+            font-weight: bold;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: transparent;
+            border: 2px solid #34495e;
+            border-radius: 8px;
+            color: #34495e;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .social-links button:hover {
+            background-color: #3498db;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        nav button {
+            background-color: #ecf0f1;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav button.active {
+            background-color: #3498db;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        nav button:hover {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content.hidden {
+            display: none;
+        }
+
+        .content h3 {
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+
+        .content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .content ul li {
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s forwards;
+        }
+
+        .content ul li:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .content ul li:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .content ul li:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .content ul li:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .content ul li:nth-child(5) {
+            animation-delay: 1.0s;
+        }
+
+        .content ul li:nth-child(6) {
+            animation-delay: 1.2s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .story-content {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .story-content.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Subtle 3D Animation Styles */
+        .cube {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(52, 152, 219, 0.8); /* Subtle blue */
+            transform-style: preserve-3d;
+            border-radius: 4px;
+            animation: rotate3D 10s infinite linear;
+            opacity: 0.7; /* Make it more transparent */
+            pointer-events: none;
+        }
+
+        @keyframes rotate3D {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(0, 0, 0);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate3d(200px, 200px, 0);
+            }
+        }
+
+        .cube::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(52, 152, 219, 0.8), rgba(41, 128, 185, 0.5));
+            border-radius: 50%;
+            transform: translateZ(10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container hidden" id="portfolio-container">
+        <div class="profile">
+            <img src="pic_pic.jpeg" alt="Profile">
+            <h1 id="name">Shivendra Pratap Singh</h1>
+            <p id="title">Computer Science Student</p>
+            <div class="social-links">
+                <button onclick="window.open('https://www.facebook.com/shivendra.pratap.3701?mibextid=ZbWKwL', '_blank')">Facebook</button>
+                <button onclick="window.open('https://www.linkedin.com/in/shivendra-pratap-singh-307a35316?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', '_blank')">LinkedIn</button>
+                <button onclick="window.open('https://github.com/hexlive6363', '_blank')">GitHub</button>
+                <button onclick="window.open('https://x.com/elon_bankman?t=dRcnZ-NXqZgV7BlBTWt5KQ&s=08', '_blank')">Twitter</button>
+            </div>
+        </div>
+
+        <nav>
+            <button class="active" onclick="showContent('education')">Education</button>
+            <button onclick="showContent('skills')">Skills</button>
+            <button onclick="showContent('projects')">Projects</button>
+            <button onclick="showContent('hobbies')">Hobbies</button>
+            <button onclick="showContent('story')">Story</button>
+        </nav>
+
+        <div class="content" id="education-content">
+            <h3>Education</h3>
+            <ul>
+                <li>M.Tech(CSIS)| present | International Institute of Information Technology, Hyderabad</li>
+                <li>B. TECH(cse) | 2020 | Pranveer Singh Institute of Technology, Kanpur</li>
+                <li>Intermediate | 2015 | O.S.V.N.I.C, Kanpur</li>
+                <li>High school  | 2013 | B.N.S.D.N.I.C, Kanpur</li>
+            </ul>
+        </div>
+
+        <div class="content hidden" id="skills-content">
+            <h3>Skills</h3>
+            <ul class="skills-list">
+                <li>C++</li>
+                <li>Python</li>
+                <li>SQL</li>
+                <li>Bash</li>
+                <li>JavaScript</li>
+                <li>Machine Learning</li>
+            </ul>
+        </div>
+
+        <div class="content hidden" id="projects-content">
+            <h3>Projects</h3>
+            <ul class="projects-list">
+                <li>E-commerce Website: Built a full-stack e-commerce platform using MERN stack.</li>
+                <li>Machine Learning Model: Developed a predictive model for stock prices using Python and TensorFlow.</li>
+                <li>Tweet sentimental Analysis (supervised Learning)</li>
+                <li>Drowsy detection ,Driver drowsiness detection systems use sensors to identify drowsiness and alert drivers with messages, icons, or verbal warnings in real time. </li>
+            </ul>
+        </div>
+
+        <div class="content hidden" id="hobbies-content">
+            <h3>Hobbies</h3>
+            <ul class="hobbies-list">
+                <li>Photography</li>
+                <li>Cricket</li>
+                <li>Hiking</li>
+                <li>Playing Online Games</li>
+            </ul>
+        </div>
+
+        <div class="content hidden" id="story-content">
+            <h3>Story</h3>
+            <p>A curious problem-solver, I dive deep into code optimization and performance tuning, always seeking efficient ways to improve software systems. With a strong foundation in both system programming and web technologies, I enjoy exploring the interplay between low-level process management and high-level design. My passion lies in mastering new algorithms and crafting clean, maintainable code, driven by an appreciation for minimalism and functionality. Constantly staying updated on emerging technologies, I believe in lifelong learning and pushing the boundaries of what's possible. My approach blends creativity with technical precision to deliver impactful solutions.</p>
+        </div>
+    </div>
+
+    <div class="cube" style="left: 10%; top: 30%;"></div>
+    <div class="cube" style="left: 60%; top: 10%;"></div>
+    <div class="cube" style="left: 30%; top: 80%;"></div>
+    <div class="cube" style="left: 80%; top: 60%;"></div>
+
+    <script>
+        function showContent(section) {
+            // Hide all content sections
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // Show the clicked section
+            document.getElementById(section + '-content').classList.remove('hidden');
+
+            // Update active button
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            const activeButton = [...buttons].find(button => button.innerText.toLowerCase() === section);
+            if (activeButton) activeButton.classList.add('active');
+        }
+
+        // Show the container with animation
+        window.addEventListener('load', function() {
+            const container = document.getElementById('portfolio-container');
+            container.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
